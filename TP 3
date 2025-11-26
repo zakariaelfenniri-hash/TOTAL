@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+int N, i, j;
+
+printf("Entrez une valeur pour N : ");
+scanf("%d", &N);
+
+// Créer un tableau de booléens et l'initialiser à true
+bool estPremier[N + 1];
+for (i = 0; i <= N; i++) {
+    estPremier[i] = true;
+}
+
+// 0 et 1 ne sont pas premiers
+estPremier[0] = estPremier[1] = false;
+
+// Crible d’Ératosthène
+for (i = 2; i * i <= N; i++) {
+    if (estPremier[i]) {
+        for (j = i * i; j <= N; j += i) {
+            estPremier[j] = false;
+        }
+    }
+}
+
+// Afficher les nombres premiers
+printf("Nombres premiers jusqu'à %d :\n", N);
+for (i = 2; i <= N; i++) {
+    if (estPremier[i]) {
+        printf("%d ", i);
+    }
+}
+
+return 0;
+}
