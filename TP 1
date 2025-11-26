@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+// Fonction pour calculer le PGCD avec l'algorithme d'Euclide
+int pgcd(int a, int b) {
+    int temp;
+    while (b != 0) {
+        temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int main() {
+    int x, y;
+    printf("Entrez deux entiers positifs : ");
+    scanf("%d %d", &x, &y);
+int main(){
+int A,B,pgcd,R;
+printf("A=");
+scanf("%d",&A);
+
+    printf("Le PGCD de %d et %d est : %d\n", x, y, pgcd(x, y));
+printf("B=");
+scanf("%d",&B);
+R=A%B;
+while(R!=0){
+    R=A%B;
+    printf("A = %d , B = %d ==> R = %d\n",A,B,R);
+    A=B;
+    B=R;
+
+    return 0;
+}
+pgcd =A;
+printf("le pgcd est %d", pgcd);
+return 0;
+}
