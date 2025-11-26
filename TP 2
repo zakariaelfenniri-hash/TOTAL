@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int euclide_etendu(int a, int b, int *x, int *y) {
+if (b == 0) {
+*x = 1;
+*y = 0;
+return a;
+}
+
+int x1, y1;
+int d = euclide_etendu(b, a % b, &x1, &y1);
+
+*x = y1;
+*y = x1 - (a / b) * y1;
+
+return d;
+}
+
+int main() {
+int a, b, c;
+int x, y;
+
+printf("=== ÉQUATION DIOPHANTIENNE a*x + b*y = c ===\n\n");
+
+
+printf("Entrez la valeur de a : ");
+scanf("%d", &a);
+
+printf("Entrez la valeur de b : ");
+scanf("%d", &b);
+
+printf("Entrez la valeur de c : ");
+scanf("%d", &c);
+
+
+int d = euclide_etendu(a, b, &x, &y);
+
+printf("\n➡ PGCD(%d, %d) = %d\n", a, b, d);
+
+if (c % d != 0) {
+    printf("Pas de solution entière car %d ne divise pas %d\n", d, c);
+} else {
+    printf("il existe des solutions entières car %d divise %d\n", d, c);
+
+
+    int x0 = x * (c / d);
+    int y0 = y * (c / d);
+
+
+    printf("\n Solution particulière : x = %d, y = %d\n", x0, y0);
+    printf(" Solutions générales :\n");
+    printf("   x = %d + %d*k\n", x0, b / d);
+    printf("   y = %d - %d*k\n", y0, a / d);
+    printf("   où k est un entier relatif.\n");
+}
+
+return 0;
+}
